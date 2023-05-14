@@ -6,7 +6,7 @@ template<typename T>
 class TPQueue {
  private:
     struct Item {
-      T item;
+      T data;
       Item* next;
     };
     Item* head;
@@ -20,35 +20,35 @@ class TPQueue {
       }
     }
     void push(const T& value) {
-      Item* data = new Item;
-      data->item = value;
-      data->next = nullptr;
+      Item* osn = new Item;
+      osn->data = value;
+      osn->next = nullptr;
       if (head == nullptr) {
-        head = data;
-        tail = data;
+        head = osn;
+        tail = osn;
         return;
       }
-      if (head->data.prior < data.prior) {
-        data->next = head;
-        head = data;
+      if (head->osn.prior < osn.prior) {
+        osn->next = head;
+        head = osn;
         return;
       }
       Item* dop = head;
-      while (dop->next != nullptr && dop->next->item.prior >= data.prior) {
+      while (dop->next != nullptr && dop->next->data.prior >= value.prior) {
         dop = dop->next;
-        data->next = dop->next;
-        dop->next = data;
-        if (data->next == nullptr) {
-          tail = data;
-        }
+      }
+      osn->next = dop->next;
+      dop->next = osn;
+      if (osn->next == nullptr) {
+        tail = osn;
       }
     }
     void T pop() {
-      Item* data = head->next;
-      T item = head->item;
+      Item* del = head->next;
+      T data = head->data;
       delete head;
-      head = data;
-      return item;
+      head = del;
+      return data;
     }
 };
 
