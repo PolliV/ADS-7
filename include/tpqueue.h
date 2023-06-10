@@ -1,6 +1,7 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
+#include <string>
 
 template<typename T>
 class TPQueue {
@@ -9,46 +10,48 @@ class TPQueue {
       T data;
       Item* next;
     };
-    Item* head;
-    Item* tail;
+    Item* header;
 
  public:
-    TPQueue() : head(nullptr), tail(nullptr) {}
-    ~TPQueue() {
-      while (head) {
-        pop();
-      }
-    }
-    void push(const T& value) {
-      Item* osn = new Item;
-      osn->data = value;
-      osn->next = nullptr;
-      if (head == nullptr) {
-        head = osn;
-        tail = osn;
-        return;
-      }
-      if (head->osn.prior < osn.prior) {
-        osn->next = head;
-        head = osn;
-        return;
-      }
-      Item* dop = head;
-      while (dop->next != nullptr && dop->next->data.prior >= value.prior) {
-        dop = dop->next;
-      }
-      osn->next = dop->next;
-      dop->next = osn;
-      if (osn->next == nullptr) {
-        tail = osn;
-      }
+    TPQueue() : header(nullptr) {}
+    void push(const T& right) {
+      if (header == nullptr) {
+        Item* str = new Item;
+        str->data = right;
+        str->next = NULL;
+        header = str;
+      } else {
+        Item* c1 = header;
+        Item* c2 = new Item;
+        int count = 0;
+        while (c1) {
+            if (c1->data.prior < right.prior) {
+                break;
+            } else {
+                c1 = c1->next;
+                count++;
+            }
+        }
+        if (count == 0) {
+            c2->next = header;
+            c2->data = right;
+            header = c2;
+        } else {
+            c1 = header;
+            for (int i = 1; i < count; i++) {
+                c1 = c1->next;
+            }
+            c2->next = c1->next;
+            c2->data = right;
+            c1->next = c2;
+        }
     }
     void T pop() {
-      Item* del = head->next;
-      T data = head->data;
-      delete head;
-      head = del;
-      return data;
+      T right = header->data;
+      Item* c = header->next;
+      delete header;
+      header = c;
+      return right;
     }
 };
 
