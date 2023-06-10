@@ -53,7 +53,7 @@ class TPQueue {
       header = c;
       return right;
     }
-};
+}
 
 struct SYM {
   char ch;
