@@ -14,7 +14,11 @@ class TPQueue {
 
  public:
     TPQueue() : header(nullptr) {}
-    void push(const T& right) {
+    T pop();
+    void push(const T& right);
+};
+template<typename T>
+void TPQueue<T>::push(const T& right) {
       if (header == nullptr) {
         Item* str = new Item;
         str->data = right;
@@ -45,15 +49,16 @@ class TPQueue {
             c2->data = right;
             c1->next = c2;
         }
-    }
-    T pop() {
+}
+template<typename T>
+T TPQueue<T>::pop() {
       Item* del = header->next;
       T data = header->data;
       delete header;
       header = del;
       return data;
     }
-};
+}
 
 struct SYM {
   char ch;
