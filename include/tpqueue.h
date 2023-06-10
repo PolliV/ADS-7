@@ -7,8 +7,8 @@ template<typename T>
 class TPQueue {
  private:
     struct Item {
-      T data;
-      Item* next;
+        T data;
+        Item* next;
     };
     Item* header;
 
@@ -18,7 +18,7 @@ class TPQueue {
       if (header == nullptr) {
         Item* str = new Item;
         str->data = right;
-        str->next = NULL;
+        str->next = nullptr;
         header = str;
       } else {
         Item* c1 = header;
@@ -46,7 +46,7 @@ class TPQueue {
             c1->next = c2;
         }
     }
-    void T pop() {
+    T pop() {
       Item* del = header->next;
       T data = header->data;
       delete header;
