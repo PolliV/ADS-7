@@ -47,11 +47,11 @@ class TPQueue {
         }
     }
     void T pop() {
-      T right = header->data;
-      Item* c = header->next;
+      Item* del = header->next;
+      T data = header->data;
       delete header;
-      header = c;
-      return right;
+      header = del;
+      return data;
     }
 }
 
