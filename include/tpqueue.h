@@ -49,6 +49,7 @@ void TPQueue<T>::push(const T& right) {
             c2->data = right;
             c1->next = c2;
         }
+      }
 }
 template<typename T>
 T TPQueue<T>::pop() {
@@ -57,7 +58,6 @@ T TPQueue<T>::pop() {
       delete header;
       header = del;
       return data;
-    }
 }
 
 struct SYM {
